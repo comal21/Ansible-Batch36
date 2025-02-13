@@ -70,17 +70,17 @@ AWS provides:
 Access Key ID (visible)
 Secret Access Key (hidden)
 * Click Download .csv file to save the keys securely.
-* ⚠️ You cannot retrieve the secret key again after this step.
+⚠️ You cannot retrieve the secret key again after this step.
 
 Configure AWS CLI
 ```
 aws configure
 ```
 Enter:
-AWS Access Key ID
-AWS Secret Access Key
-Default region - Hit Enter 
-Output format - Hit Enter 
+* AWS Access Key ID
+* AWS Secret Access Key
+* Default region - Hit Enter
+* Output format - Hit Enter 
 
 ### Task 3: Automate Infrastructure Provisioning with Ansible
 
