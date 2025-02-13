@@ -1,32 +1,42 @@
 ## Installation and Configuration of Ansible 
 
-### Task 1: Installing on a VM 
+### Task 1: Create the Ansible Control Node
 Here we have taken RHEL but the same can be done on Ubuntu as well. The package manager changes.
 
 `***NOTE: Our labs are designed to work RHEL machines.***`
 
-* Launch a RHEL 9 instance in us-east-1.
-* Name: Ansible-Control-Server
-* Choose t2.micro. 
+* Launch a RHEL 9 instance
+* Name: Ansible-Control-Node
+* Instance Type: t2.micro
 * In security group, allow SSH (22), HTTP (80), and HTTPS (443) for all incoming traffic.
-* Create a Key pair [ .ppk - putty | .pem - mobaxterm ]
+* Create a Key pair [ .ppk - putty ]
 
-* Download puu
+`***NOTE:We will be using Putty software to SSH into the control node***`
 
+* Download putty: https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
 
-Once the EC2 is up & running, SSH into one of it and set the hostname as 'Control-Node'. 
+  
+### Task 2: Configure the Ansible Control Node
+
+### Steps to connect via putty:
+* Open PuTTY.
+* In the Host Name (or IP address) field, enter the public IP address of your EC2 instance.
+* Under Connection → SSH → Auth, browse and select the .ppk private key file you created earlier.
+* When prompted, enter the username. For Amazon Linux, the username is ec2-user, for Ubuntu it's ubuntu, and for RHEL it's ec2-user
+* If it’s your first time connecting, a security alert will appear asking to confirm the server’s fingerprint. Click Yes to continue
+
+Set the hostname as 'Control-Node'. 
 ```
 sudo hostnamectl set-hostname control-node
 ```
+Refresh the Shell
 ```
 bash
 ```
-
 Update the package repository with latest available versions
 ```
 sudo yum check-update
 ```
-
 Install latest version of Python. 
 ```
 sudo yum install python3-pip -y 
@@ -47,27 +57,38 @@ sudo pip3 install ansible
 ```
 pip show ansible
 ```
+### Steps to Create and Download AWS Access Keys
 
-Authorize aws credentials
+* Go to the AWS Management Console.
+* Click on your Profile Name (top right corner) → Select Security credentials.
+* Scroll down to the Access keys section.
+* Click Create access key.
+* Select the use case : CLI.
+* Click Next and then Create access key.
+
+AWS provides:
+Access Key ID (visible)
+Secret Access Key (hidden)
+* Click Download .csv file to save the keys securely.
+* ⚠️ You cannot retrieve the secret key again after this step.
+
+Configure AWS CLI
 ```
 aws configure
 ```
-#### Enter the Credentials as below. Example:
-| **Access Key ID**    | **Secret Access Key** |
-| -----------------    | --------------------- |
-| 77AKIAWJXSSHRD27T6SC | 777H4Vh0U5oenKfmJ/+FEnGAmZvQLX7zTT |
+Enter:
+AWS Access Key ID
+AWS Secret Access Key
+Default region - Hit Enter 
+Output format - Hit Enter 
 
-To generate the aws credentials:
-1. Click on your accouunt name on the top right corner of your management console
-2. Find Access keys - Click on create access key
-```
-sudo yum install wget -y
-```
+### Task 3: Automate Infrastructure Provisioning with Ansible
 
 Create the Script file to launch 2 more instances.
 ```
 vi ansible_script.yaml
 ```
+Copy paste the below code & Save the file using "ESCAPE + :wq!"
 ```
 ---
 - hosts: localhost
@@ -152,6 +173,9 @@ Execute the script
 ```
 ansible-playbook ansible_script.yaml
 ```
+Verify the creation of the managed nodes on the AWS Management Console.
+
+### Task 4: Set up the static inventory file
 
 Once you get the ip addresses, do the following:
 
@@ -159,26 +183,21 @@ Once you get the ip addresses, do the following:
 sudo vi /etc/ansible/hosts
 ```
 
-Add the prive IP addresses, by pressing "INSERT" 
+Add the private IP addresses, by pressing "INSERT" 
 ```
 managed-node1   ansible_ssh_host=<private-ip-managed-node1>  ansible_ssh_user=ec2-user
 
 managed-node2   ansible_ssh_host=<private-ip-managed-node2>  ansible_ssh_user=ec2-user
  
 ```
-![image](https://github.com/user-attachments/assets/a646936e-2b79-4da1-857f-87d6599e4ad2)
-
-
 Save the file using "ESCAPE + :wq!"
 
-list all managed node ip addresses.
+List the managed nodes
 ```
 ansible all --list-hosts
 ```
-![image](https://github.com/user-attachments/assets/bf61d4ab-1556-4728-ad39-7a1bb7fa7ddc)
 
-
-### Task 2:  SSH into each of them and set the hostnames.
+### Task 5:  SSH into each of the managed nodes and set the hostname.
 ```
 ssh ec2-user@< Replace Node 1 IP >
 ```
@@ -198,8 +217,8 @@ sudo hostnamectl set-hostname managed-node2
 exit
 ```
 
-Use ping module to check if the managed nodes are able to interpret the ansible modules
+Use ping module to check if the managed nodes are available.
 ```
 ansible all -m ping
 ```
-![image](https://github.com/user-attachments/assets/e7e246ad-4b51-4e8e-b4c5-8c4aba695c82)
+
