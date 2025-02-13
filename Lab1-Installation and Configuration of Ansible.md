@@ -1,14 +1,18 @@
 ## Installation and Configuration of Ansible 
 
 ### Task 1: Installing on a VM 
-Here we have taken RHEL but the same can be done on Ubutu as well. The package manager changes.
+Here we have taken RHEL but the same can be done on Ubuntu as well. The package manager changes.
 
 `***NOTE: Our labs are designed to work RHEL machines.***`
 
-* Launch a RHEL 9 instance in us-east-1. 
+* Launch a RHEL 9 instance in us-east-1.
+* Name: Ansible-Control-Server
 * Choose t2.micro. 
-* In security group, allow SSH (22), HTTP (80), and HTTPS (443) for all incoming traffic. 
-* Add Tag Name: control-node
+* In security group, allow SSH (22), HTTP (80), and HTTPS (443) for all incoming traffic.
+* Create a Key pair [ .ppk - putty | .pem - mobaxterm ]
+
+* Download puu
+
 
 Once the EC2 is up & running, SSH into one of it and set the hostname as 'Control-Node'. 
 ```
@@ -53,6 +57,9 @@ aws configure
 | -----------------    | --------------------- |
 | 77AKIAWJXSSHRD27T6SC | 777H4Vh0U5oenKfmJ/+FEnGAmZvQLX7zTT |
 
+To generate the aws credentials:
+1. Click on your accouunt name on the top right corner of your management console
+2. Find Access keys - Click on create access key
 ```
 sudo yum install wget -y
 ```
