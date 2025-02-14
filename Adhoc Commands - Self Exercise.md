@@ -1,4 +1,4 @@
-Here are some useful **ad-hoc** Ansible command examples for practice. These commands are run from the Ansible **control node** and execute tasks on managed nodes without needing a playbook.
+These commands are run from the Ansible **control node** and execute tasks on managed nodes without needing a playbook.
 
 ---
 
