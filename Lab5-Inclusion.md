@@ -58,7 +58,7 @@ vi third.yml
   tasks:
     - name: install common packages
       yum:
-        name: [wge, url]
+        name: [wget, curl]
         state: present
       register: out
       ignore_errors: yes  # This will ensure the playbook continues even if the task fails
