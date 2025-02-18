@@ -18,7 +18,7 @@ vi tags.yaml
       stat:
         path: /tmp/target_directory
       register: target_dir
-      tags: check_directory
+      tags: always
 
     - name: Create directory if not present
       file:
