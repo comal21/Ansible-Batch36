@@ -51,10 +51,6 @@ vi tags.yaml
       tags: create_user
 ```
 
-Run Task with check_directory Tag
-```
-ansible-playbook tags.yaml --tags "check_directory"
-```
 Run Task with create_directory Tag
 ```
 ansible-playbook tags.yaml --tags "create_directory"
@@ -62,10 +58,6 @@ ansible-playbook tags.yaml --tags "create_directory"
 Run Task with copy_file Tag
 ```
 ansible-playbook tags.yaml --tags "copy_file"
-```
-Run Task with check_user Tag
-```
-ansible-playbook tags.yaml --tags "check_user"
 ```
 Run Task with create_user Tag
 ```
