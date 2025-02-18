@@ -38,8 +38,10 @@ vi tags.yaml
     - name: Check if user 'exampleuser' exists
       command: id -u exampleuser
       register: user_exists
-      ignore_errors: yes
-      tags: check_user
+      changed_when: false
+      failed_when: user_exists.rc not in [0, 1]  # Allows non-zero return without failing
+      tags: always  # Ensures this task runs even when specific tags are used
+      tags: always
 
     - name: Create user 'exampleuser' if not exists
       user:
@@ -74,15 +76,21 @@ You can run multiple tasks by combining tags in a comma-separated list.
 ```
 ansible-playbook tags.yaml --tags "create_directory,copy_file"
 ```
-Run check_directory, create_directory, and check_user Tasks
-```
-ansible-playbook tags.yaml --tags "check_directory,create_directory,check_user"
-```
+
 You can also skip specific tasks by using the --skip-tags option. This is useful if you want to run all tasks except certain ones.
 ```
 ansible-playbook tags.yaml --skip-tags "check_user"
 ```
-If you want to skip the first task (Check if target directory exists) and start from the Create directory if not present task, use:
+Skip tasks
 ```
-ansible-playbook tags.yaml --start-at-task
+ansible-playbook tags.yaml --start-at-task "Check if user 'exampleuser' exists"
+```
+
+List all the tags
+```
+ansible-playbook tags.yaml --list-tags
+```
+List all the tasks
+```
+ansible-playbook tags.yaml --list-tasks
 ```
