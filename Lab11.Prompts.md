@@ -30,6 +30,6 @@ ansible-playbook promptlab.yml
 ```
 Verify if the specified package is installed. 
 ```
-ansible all -m command -a "yum list installed | grep vim"
+ansible all -m command -a "yum list installed 'vim*'"
 ```
 
