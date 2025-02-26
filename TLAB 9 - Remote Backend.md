@@ -117,3 +117,4 @@ cd ~
 rm -rf S3-Lab
 ```
 **Note:** Also Ensure to delete the `S3 Bucket` (To delete, first empty the Bucket and then Delete it.)
+**Note:** Delete the EC2 instance as well via the management console
