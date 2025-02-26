@@ -9,7 +9,7 @@ vi import.tf
 Add the given lines, by pressing "INSERT" 
 ```
 provider "aws" {
-  region = "us-east-1"
+  region = "us-east-2"
 }   
 
 #Execute the below command
