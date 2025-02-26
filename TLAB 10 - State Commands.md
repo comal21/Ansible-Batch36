@@ -15,13 +15,13 @@ terraform state show aws_instance.terraform-remoteState
 ### terraform state mv
 Moves an item in the Terraform state from one address to another. This is useful when you want to rename a resource or change its location in the state file.
 ```
-terraform state mv aws_instance.example aws_instance.new_example
+terraform state mv aws_instance.terraform-remoteState aws_instance.new_terraform-remoteState
 ```
 
 ### terraform state rm
 Removes one or more items from the Terraform state. This is typically used when you want to delete a resource from your infrastructure and stop managing it with Terraform.
 ```
-terraform state rm aws_instance.example
+terraform state rm aws_instance.new_terraform-remoteState
 ```
 
 ### terraform state pull
@@ -36,8 +36,3 @@ Manually pushes the local state to the configured backend. This command is typic
 terraform state push
 ```
 
-### terraform state refresh:
-Updates the state file with the real-world infrastructure. This command is useful when Terraform's state file becomes out of sync with the actual infrastructure, typically due to manual changes made outside of Terraform.
-```
-terraform state refresh
-```
