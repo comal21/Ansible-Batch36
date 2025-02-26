@@ -9,7 +9,7 @@ terraform state list
 ### terraform state show
 Displays detailed information about a specific resource in the Terraform state, including its attributes and metadata.
 ```
-terraform state show aws_instance.example
+terraform state show aws_instance.terraform-remoteState
 ```
 
 ### terraform state mv
