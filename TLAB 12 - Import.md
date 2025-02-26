@@ -2,6 +2,7 @@
 ```
 mkdir import_lab && cd import_lab
 ```
+**Create an ubuntu EC2 instance on AWS via the management console with default configurations**
 ```
 vi import.tf
 ```
