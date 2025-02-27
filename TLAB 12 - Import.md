@@ -16,7 +16,7 @@ resource "aws_instance" "test_instance" {
   ami = ""
   instance_type = ""
   tags = {
-    name = ""
+    Name = ""
   }
 }
 ```
