@@ -57,7 +57,7 @@ https://app.terraform.io/app
 
   `AWS_ACCESS_KEY = Your aws access key`
   
-  `AWS_SECRET_ACCESS_KEY = Your aws secret key`
+  `AWS_SECRET_KEY = Your aws secret key`
 
 * Click on New Run and choose the option plan and apply
 * Once Plan is successful, scroll down a bit, and it will wait for the confirmation/approval to apply the changes. Clickâ€¯Confirm & Apply 
