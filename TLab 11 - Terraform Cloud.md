@@ -33,7 +33,7 @@ https://app.terraform.io/app
 
   resource "aws_instance" "web" { 
   ami           = "ami-0fc5d935ebf8bc3bc" 
-  instance_type = "t3.micro" 
+  instance_type = "t2.micro" 
   tags = { 
   Name = "Hello from Terraform Cloud" 
   } 
