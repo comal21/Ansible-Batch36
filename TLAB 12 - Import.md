@@ -28,6 +28,10 @@ terraform init
 ```
 terraform import aws_instance.test_instance instanceid
 ```
+```
+cat terraform.tfstate
+```
+
 **Note** : Copy the AMI ID, Instance type and Name of the resource from the state file and add it to import.tf
 ```
 terraform plan
