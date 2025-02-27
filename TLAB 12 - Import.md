@@ -26,10 +26,10 @@ resource "aws_instance" "test_instance" {
 Save the file using "ESCAPE + :wq!"
 
 ```
-terraform import aws_instance.test_instance instanceid
-```
-```
 terraform init
+```
+```
+terraform import aws_instance.test_instance instanceid
 ```
 ```
 terraform plan
