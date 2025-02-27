@@ -12,14 +12,11 @@ provider "aws" {
   region = "us-east-2"
 }   
 
-#Execute the below command
-#terraform import aws_instance.test_instance <***Resource-ID***>
-
 resource "aws_instance" "test_instance" {
-  ami = "<***AMI_ID OF THE EC2 Instance to be IMPORTED***>"
-  instance_type = "<***INSTANCE TYPE***>"
+  ami = ""
+  instance_type = ""
   tags = {
-    name = "<TAGS if ANY / New Tags can be added as well>"
+    name = ""
   }
 }
 ```
@@ -31,6 +28,7 @@ terraform init
 ```
 terraform import aws_instance.test_instance instanceid
 ```
+**Note** : Copy the AMI ID, Instance type and Name of the resource from the state file and add it to import.tf
 ```
 terraform plan
 ```
